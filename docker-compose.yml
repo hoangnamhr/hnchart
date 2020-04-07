@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    container_name: chart
+    build: .
+    ports:
+     - "8045:8000"
+    volumes:
+     - .:/var/www/chart
+    links:
+     - db
+  db:
+    image: "mariadb:10.3.10"
+    container_name: db_chart
+    environment:
+     MYSQL_ROOT_PASSWORD: "1"
+     MYSQL_DATABASE: "chart"
+    ports:
+     - "33304:3306"
